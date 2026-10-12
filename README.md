@@ -1,10 +1,16 @@
 # deskpilot
 
-**a modular c++ desktop control engine for autonomous ai agents.**
+**a cross-platform c++ desktop control engine for autonomous ai agents.**
 
-deskpilot is an experimental linux-based desktop automation engine designed to give ai agents the ability to visually navigate and interact with graphical environments through independent cursor control, human-like movement, and simulated input.
+deskpilot is an experimental desktop interaction engine designed to enable ai agents to visually navigate, interact with, and operate graphical applications through independent input control and human-like behavior.
 
-the project aims to provide a lightweight, extensible interface for autonomous desktop interaction, with future integration into larger ai agent systems.
+the long-term goal is to provide a lightweight, modular, and cross-platform desktop automation framework compatible with windows, linux, and a wide range of graphical environments.
+
+## vision
+
+deskpilot aims to give ai agents the ability to operate a computer much like a human user, while maintaining an independent workspace that doesn't interfere with the host user's input.
+
+the engine is designed around realistic interaction, visual understanding, platform independence, and integration with larger autonomous ai systems.
 
 ## features
 
@@ -16,52 +22,78 @@ the project aims to provide a lightweight, extensible interface for autonomous d
 - basic mouse input simulation via xtest
 
 **planned**
-- independent cursor and keyboard control
-- isolated desktop environments
+- independent mouse and keyboard control
+- isolated desktop sessions
+- cross-platform desktop interaction
 - screen capture and visual understanding
-- natural cursor movement generation
-- window management and application interaction
-- autonomous task execution
+- realistic cursor movement generation
+- clicking, scrolling, dragging, and typing
+- window management and application control
+- autonomous task execution and verification
 - external ai agent integration
+- reusable desktop control api
+
+## platform compatibility
+
+| platform | status |
+|---|---|
+| linux / x11 | experimental prototype |
+| linux / wayland | planned |
+| windows | planned |
+| additional graphical environments | future support |
+
+platform-specific backends will be developed to accommodate differences in graphics, input handling, and desktop security.
 
 ## architecture
 
-deskpilot is being developed in modular c++, separating cursor management, movement generation, input recording, and desktop interaction into independent components.
+deskpilot is designed around a modular c++ architecture, separating desktop interaction, input recording, movement generation, and platform-specific implementations.
 
 ```text
-src/
-├── main.cpp
-├── AICursor.hpp
-├── AICursor.cpp
-├── MouseRecorder.hpp
-├── MouseRecorder.cpp
-├── MovementEngine.hpp
-└── MovementEngine.cpp
+             ai agent / omp
+                   |
+           desktop control api
+                   |
+       +-----------+-----------+
+       |           |           |
+     input       vision     movement
+       |           |           |
+       +-----------+-----------+
+                   |
+           platform backends
+                   |
+          +--------+--------+
+          |                 |
+       linux             windows
+     x11/wayland         win32
 ```
 
 ## tech stack
 
 - **language:** c++
-- **platform:** linux
-- **display system:** x11
-- **libraries:** xlib, xtest
-- **build tools:** g++
+- **current platform:** linux
+- **current display system:** x11
+- **current libraries:** xlib, xtest
+- **compiler:** g++
+
+## roadmap
+
+- [x] initial cursor prototype
+- [x] mouse movement recording and basic playback
+- [ ] modularize core c++ components
+- [ ] implement independent desktop input
+- [ ] develop visual desktop perception
+- [ ] introduce a platform abstraction layer
+- [ ] implement windows compatibility
+- [ ] investigate wayland support
+- [ ] build reusable desktop control api
+- [ ] integrate autonomous agent reasoning
+- [ ] integrate with omp
 
 ## status
 
 > early development — experimental prototype.
 
-deskpilot is an ongoing learning and development project. its architecture, functionality, and interfaces are subject to change as development progresses.
-
-## roadmap
-
-- [x] initial cursor prototype
-- [x] movement recording and playback
-- [ ] modularize core components
-- [ ] implement isolated input control
-- [ ] develop visual desktop perception
-- [ ] integrate autonomous agent reasoning
-- [ ] expose a reusable desktop control api
+deskpilot currently targets linux/x11. cross-platform functionality, independent input isolation, and ai-driven desktop interaction remain under development.
 
 ## license
 
