@@ -1,0 +1,6 @@
+agent
+build/
+*.o
+*.out
+.env
+.env.*
